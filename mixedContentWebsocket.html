@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Mixed Content Websocket</title>
+</head>
+<body>
+    <div> 
+        <h1>Mixed Content Websocket</h1>
+        <p>This page contains an script tag with a websocket which is explicitly loaded with HTTPS.</p>
+    </div>
+    
+    <script>
+        const socket = new WebSocket("ws://javascript.info");
+    </script>
+</body>
+</html>
