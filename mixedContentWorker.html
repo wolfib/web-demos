@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Mixed Content Fetch in Worker</title>
+</head>
+<body>
+    <div> 
+        <h1>Mixed Content Fetch in Worker</h1>
+        <p>This page creates a worker which fetches from an HTTP endpoint.</p>
+    </div>
+    
+    <script>
+        let worker = new Worker('worker.js');
+        worker.postMessage('start');
+    </script>
+</body>
+</html>
