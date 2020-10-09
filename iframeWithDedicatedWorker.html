@@ -10,5 +10,11 @@
         <h1>Iframe with dedicated worker</h1>
         <iframe id="someId" name="someName" src="https://mdn.github.io/simple-web-worker/"></iframe>
     </div>
+    <script>
+        if (window.Worker) {
+            const myWorker = new Worker("dedicatedWorker.js");
+            myWorker.postMessage("Script posting message to worker");
+        }
+    </script>
 </body>
 </html>
