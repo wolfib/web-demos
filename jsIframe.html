@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>JavaScript creates Iframe</title>
+</head>
+<body>
+  <div> 
+    <h1>JavaScript creates Iframe</h1>
+  </div>
+</body>
+
+<script>
+  const iframe1 = document.createElement("iframe");
+  iframe1.setAttribute("src", "background-color.html");
+  document.body.appendChild(iframe1);
+
+  const iframe2 = document.createElement("iframe");
+  iframe2.setAttribute("src", "https://www.mixedcontentexamples.com/Test/SecureImage");
+  document.body.appendChild(iframe2);
+</script> 
+</html>
