@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Iframe without src</title>
+</head>
+<body>
+    <div> 
+        <h1>Iframe without src</h1>
+        <iframe id="frame" sandbox></iframe>
+    </div>
+</body>
+
+<script>
+  document.getElementById('frame').contentDocument.write("<h1>Hello world!</h1>")
+</script>
+</html>
