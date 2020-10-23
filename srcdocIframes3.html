@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>srcdoc iframes 3</title>
+</head>
+<body>
+    <div> 
+        <h1>srcdoc iframes 3</h1>
+        <iframe srcdoc id="frame"></iframe>
+    </div>
+</body>
+
+<script>
+  const doc = document.getElementById('frame').contentDocument;
+  doc.open();
+  doc.write("<h1>Hello world 2!</h1>");
+  doc.close();
+</script>
+</html>
