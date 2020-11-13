@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>404 test</title>
+</head>
+<body>
+  <div> 
+    <h1>404 test</h1>
+    <img src="doesNotExist.html" />
+  </div>
+</body>
+
+<script>
+  fetch('doesNotExist.json')
+   .then(() => console.log('fetch success'))
+   .catch(() => console.log('fetch error'));
+
+   let xhr = new XMLHttpRequest();
+   xhr.open('GET', 'xhrDoesNotExist.json');
+   xhr.send();
+   xhr.onload = () => console.log('xhr success');
+  xhr.onerror = () => console.log('xhr error');
+</script> 
+</html>
