@@ -1,0 +1,19 @@
+<html>
+<body>
+  <iframe id="frame" src="index.html"></iframe>
+  <button id="button">write to frame</button>
+</body>
+
+<script>
+  document.getElementById('button').onclick = () => {
+    // const doc = document.getElementById('frame').contentDocument;
+    const el = document.getElementById('frame');
+    console.log('element', el);
+    const doc = el.contentDocument;
+    console.log(doc);
+    doc.open();
+    doc.write("<h1>Hello world !</h1>");
+    doc.close();
+  }
+</script>
+</html>
