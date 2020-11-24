@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Write to self</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+<body>
+  <h1>Write to self</h1>
+  <img src="calvin.jpg" />
+  <button id="button">Write to self</button>
+</body>
+
+<script>
+  document.getElementById('button').onclick = () => {
+    document.open();
+    docunment.write('<h1>Written with document.write()</h1><img src="mickey.jpg" /><link rel="stylesheet" href="styles2.css">');
+    console.log('after writing');
+    doc.close();
+    console.log('after closing');
+  }
+</script>
+</html>
