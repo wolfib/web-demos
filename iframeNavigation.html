@@ -1,20 +1,19 @@
 <!DOCTYPE html>
-
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Iframe Navigation</title>
+  <meta name="viewport" content="width=device-width" />
+  <title>Iframe Navigation</title>
 </head>
 <body>
-    <div> 
-        <h1>Iframe Navigation</h1>
-        <iframe id="someId" name="someName" src="https://www.mixedcontentexamples.com/Test/SecureCSSLink"></iframe>
-    </div>
+  <div> 
+    <h1>Iframe Navigation</h1>
+    <iframe id="someId" name="someName" src="pageWithResources.html"></iframe>
+    <button id="button">navigate iframe</button>
+  </div>
 </body>
-
 <script>
-    window.setTimeout(() => {
-        document.getElementById('someId').src = 'https://www.mixedcontentexamples.com/Test/SecureImage';
-    }, 4000);
-  </script>
+  document.getElementById('button').onclick = () => {
+    document.getElementById('someId').src = 'https://www.mixedcontentexamples.com/Test/SecureImage';
+  }
+</script>
 </html>
