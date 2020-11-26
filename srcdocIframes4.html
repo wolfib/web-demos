@@ -8,14 +8,14 @@
 <body>
     <div> 
         <h1>srcdoc iframes 4</h1>
-        <iframe id="frame" src="index.html"></iframe>
+        <iframe id="frame" src="pageWithResources.html"></iframe>
     </div>
 </body>
 
 <script>
   const doc = document.getElementById('frame').contentDocument;
   doc.open();
-  doc.write("<h1>Hello world 4!</h1>");
+  doc.write('<h1>Written with document.write()</h1><img src="mickey.jpg" /><link rel="stylesheet" href="styles2.css">');
   doc.close();
 </script>
 </html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Try to hide</title>
+  </head>
+<body>
+  <h1>Try to hide</h1>
+</body>
+
+<script>
+  var f = document.createElement("iframe");
+  f.src = "#foo";
+  document.body.appendChild(f);
+  f.contentDocument.write("<div id='d'></div>"); // this prevents "f" to be reported to DevTools
+  f.contentDocument.getElementById("d").innerHTML = "<iframe src='pageWithResources.html'></iframe>";
+</script>
+</html>
