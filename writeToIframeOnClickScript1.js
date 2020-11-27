@@ -1,7 +1,7 @@
 document.getElementById('button').onclick = () => {
   const el = document.getElementById('frame');
   console.log('element', el);
-  const doc = el.contentDocument;
+  let doc = el.contentDocument;
   console.log(doc);
   // doc.open();
   doc.write(`
@@ -9,6 +9,7 @@ document.getElementById('button').onclick = () => {
     <img src="mickey.jpg" />
     <link rel="stylesheet" href="styles2.css">
   `);
+  doc = document.getElementById('frame').contentDocument;
   doc.write(`
   <h1>2 Written with document.write()</h1>
   <img src="mickey.jpg" />
