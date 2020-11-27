@@ -3,7 +3,7 @@ document.getElementById('button').onclick = () => {
   console.log('element', el);
   const doc = el.contentDocument;
   console.log(doc);
-  doc.open();
+  // doc.open();
   doc.write(`
     <h1>Written with document.write()</h1>
     <img src="mickey.jpg" />
