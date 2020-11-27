@@ -5,9 +5,14 @@ document.getElementById('button').onclick = () => {
   console.log(doc);
   // doc.open();
   doc.write(`
-    <h1>Written with document.write()</h1>
+    <h1>1 Written with document.write()</h1>
     <img src="mickey.jpg" />
     <link rel="stylesheet" href="styles2.css">
   `);
+  doc.write(`
+  <h1>2 Written with document.write()</h1>
+  <img src="mickey.jpg" />
+  <link rel="stylesheet" href="styles2.css">
+`);
   doc.close();
 }
