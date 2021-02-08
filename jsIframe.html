@@ -12,12 +12,20 @@
 </body>
 
 <script>
-  const iframe1 = document.createElement("iframe");
-  iframe1.setAttribute("src", "background-color.html");
-  document.body.appendChild(iframe1);
+  first();
 
   const iframe2 = document.createElement("iframe");
   iframe2.setAttribute("src", "https://www.mixedcontentexamples.com/Test/SecureImage");
   document.body.appendChild(iframe2);
+
+  function first() {
+    second();
+  }
+
+  function second() {
+    const iframe1 = document.createElement("iframe");
+    iframe1.setAttribute("src", "background-color.html");
+    document.body.appendChild(iframe1);
+  }
 </script> 
 </html>
