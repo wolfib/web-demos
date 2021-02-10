@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>JavaScript creates OOPIF</title>
+</head>
+<body>
+  <div> 
+    <h1>JavaScript creates OOPIF</h1>
+  </div>
+</body>
+
+<script>
+  first();
+
+  function first() {
+    second();
+  }
+
+  function second() {
+    const iframe = document.createElement("iframe");
+    iframe.setAttribute("src", "https://www.mixedcontentexamples.com/Test/SecureImage");
+    document.body.appendChild(iframe);
+  }
+</script> 
+</html>
