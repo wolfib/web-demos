@@ -20,6 +20,7 @@
 
   function second() {
     const iframe = document.createElement("iframe");
+    iframe.setAttribute("allow", "accelerometer, autoplay");
     iframe.setAttribute("src", "https://www.mixedcontentexamples.com/Test/SecureImage");
     document.body.appendChild(iframe);
   }
