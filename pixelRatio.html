@@ -1,0 +1,18 @@
+<!DOCTYPE HTML>
+
+<body>
+	<p>pixel Ratio of this page is: </p>
+	  <input id="input" value="0"/>
+  <script>
+  	window.addEventListener('load', function() {
+      var inputElement = document.getElementById('input');
+      window.setTimeout(function() {
+        inputElement.value = window.devicePixelRatio
+      }, 50);
+  	});
+  </script>
+  <div>
+  	<iframe src="pixelRatioIframe.html"></iframe>
+  </div>
+
+</body>
