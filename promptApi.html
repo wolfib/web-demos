@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>Prompt API Demo</title>
+</head>
+<style>
+    .grid {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+
+      div {
+        border: 1px solid gray;
+      }
+    }
+</style>
+<body>
+  <div> 
+    <h1>Prompt API Demo</h1>
+  </div>
+  <p>Hover over the table cells in the left column to generate content for the cells in the right column with the prompt API</p>
+  <div class="grid">
+    <div onmouseover="trigger(1)" onmouseout="abort(1)">Row 1</div>
+    <div></div>
+    <div onmouseover="trigger(2)" onmouseout="abort(2)">Row 2</div>
+    <div></div>
+    <div onmouseover="trigger(3)" onmouseout="abort(3)">Row 3</div>
+    <div></div>
+    <div onmouseover="trigger(4)" onmouseout="abort(4)">Row 4</div>
+    <div></div>
+    <div onmouseover="trigger(5)" onmouseout="abort(5)">Row 5</div>
+    <div></div>
+    <div onmouseover="trigger(6)" onmouseout="abort(6)">Row 6</div>
+    <div></div>
+    <div onmouseover="trigger(7)" onmouseout="abort(7)">Row 7</div>
+    <div></div>
+    <div onmouseover="trigger(8)" onmouseout="abort(8)">Row 8</div>
+    <div></div>
+    <div onmouseover="trigger(9)" onmouseout="abort(9)">Row 9</div>
+    <div></div>
+    <div onmouseover="trigger(10)" onmouseout="abort(10)">Row 10</div>
+    <div></div>
+  </div>
+</body>
+
+<script>
+  let mainSession;
+
+  (async () => {
+    const availability = await window.LanguageModel.availability({expectedOutputs: [{type: 'text', languages: ['en']}]});
+    console.log('availability', availability);
+
+    if (availability === 'downloadable') {
+      console.log('starting download');
+      const session = await LanguageModel.create({
+        monitor(m) {
+          m.addEventListener('downloadprogress', (e) => {
+            console.log(`Downloaded ${e.loaded * 100}%`);
+          });
+        },
+      });
+    }
+
+    mainSession = await window.LanguageModel.create({
+      initialPrompts: [{
+        role: 'system',
+        content: `
+  You are an expert web developer. Your goal is to help a human web developer who
+  is using Chrome DevTools to debug a web site or web app. The Chrome DevTools
+  console is showing a message which is either an error or a warning. Please help
+  the user understand the problematic console message.
+
+  Your instructions are as follows:
+  - Explain the reason why the error or warning is showing up.
+  - The explanation has a maximum length of 200 characters. Anything beyond this
+  length will be cut off. Make sure that your explanation is at most 200 characters long.
+  - Your explanation should not end in the middle of a sentence.
+  - Your explanation should consist of a single paragraph only. Do not include any
+  headings or code blocks. Only write a single paragraph of text.
+  - Your response should be concise and to the point. Avoid lengthy explanations
+  or unnecessary details.
+        `
+      }],
+      expectedInputs: [{
+        type: 'text',
+        languages: ['en'],
+      }],
+      expectedOutputs: [{
+        type: 'text',
+        languages: ['en'],
+      }],
+    });
+    console.log('session created');
+  })().catch(e => {
+    console.log('caught', e);
+  });
+  
+  let abortController;
+  const prompt = `Please explain the following console error or warning:
+
+\`\`\`
+Uncaught RangeError: Maximum call stack size exceeded
+    at fib (demo.html:6:5)
+    at fib (demo.html:7:22)
+    at fib (demo.html:7:22)
+    at fib (demo.html:7:22)
+    at fib (demo.html:7:22)
+    at fib (demo.html:7:22)
+    at fib (demo.html:7:22)
+    at fib (demo.html:7:22)
+    at fib (demo.html:7:22)
+    at fib (demo.html:7:22)
+fib @ demo.html:6
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @ demo.html:7
+fib @
+\`\`\`
+For the following code:
+
+\`\`\`
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>Fibonacci app</title>
+<script nonce="Bqx9ywpTGfnKt40E8VJb0g">
+  function fib(n) {
+    return n < 1 ? 0
+          : n <= 2 ? fib(n)
+          : fib(n - 1) + fib(n - 2)
+  }
+<\/script>
+<button onclick="fib(100)">Compute</button>
+\`\`\`
+  `;
+
+  async function trigger(row) {
+    const responseElement = document.querySelector(`.grid div:nth-child(${row * 2})`);
+    let childSession;
+
+    try {
+      abortController = new AbortController();
+      childSession = await mainSession.clone();
+      const stream = childSession.promptStreaming(prompt, {
+        signal: abortController.signal,
+      });
+      let response = '';
+      for await (const chunk of stream) {
+        response += chunk;
+        responseElement.textContent = response;
+      }
+    } catch (err) {
+      // Ignore `AbortError` errors, which are thrown on mouse leave.
+      if (err.name !== 'AbortError') {
+        console.error(err.name, err.message);
+      }
+    } finally {
+      // This is important. Omission leads to resource wastage and potentially to the initial prompt being ignored.
+      childSession.destroy();
+    }
+  }
+
+  function abort(row) {
+    abortController.abort();
+  }
+</script> 
+</html>
